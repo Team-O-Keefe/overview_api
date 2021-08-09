@@ -1,0 +1,20 @@
+{
+  "name": "overview_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-O-Keefe/overview_api.git"
+  },
+  "keywords": ["api", "server", "node", "express", "postgresql", "backend"],
+  "author": "Erin O'Connor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-O-Keefe/overview_api/issues"
+  },
+  "homepage": "https://github.com/Team-O-Keefe/overview_api#readme"
+}
