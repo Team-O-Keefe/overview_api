@@ -10,11 +10,21 @@
     "type": "git",
     "url": "git+https://github.com/Team-O-Keefe/overview_api.git"
   },
-  "keywords": ["api", "server", "node", "express", "postgresql", "backend"],
+  "keywords": [
+    "api",
+    "server",
+    "node",
+    "express",
+    "postgresql",
+    "backend"
+  ],
   "author": "Erin O'Connor",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Team-O-Keefe/overview_api/issues"
   },
-  "homepage": "https://github.com/Team-O-Keefe/overview_api#readme"
+  "homepage": "https://github.com/Team-O-Keefe/overview_api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
