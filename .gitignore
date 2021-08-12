@@ -1,2 +1,3 @@
 node_modules/
 database/csv-data/
+.DS_Store
