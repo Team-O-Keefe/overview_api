@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const router = require('./routes/router.js');
+const router = require('./router.js');
 const app = express();
 
 app.use(morgan('dev'));
