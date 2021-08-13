@@ -6,4 +6,4 @@
 3. Created database using `psql` from command line
 4. From command line, ran the following:
    1. `psql -U <user_name> <db_name> < <schema_filename>.sql`
-5. 
+5.
