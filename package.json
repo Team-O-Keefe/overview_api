@@ -26,8 +26,35 @@
   },
   "homepage": "https://github.com/Team-O-Keefe/overview_api#readme",
   "dependencies": {
+    "eslint-config-airbnb": "^18.2.1",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "pg": "^8.7.1"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "es6": true,
+      "browser": true
+    },
+    "rules": {
+      "brace-style": [
+        "error",
+        "stroustrup"
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-unused-vars": [
+        "warn"
+      ],
+      "no-var": [
+        "off"
+      ],
+      "one-var": [
+        "off"
+      ]
+    }
   }
 }
