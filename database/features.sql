@@ -5,7 +5,7 @@ CREATE TABLE features(
   feature VARCHAR(255),
   value VARCHAR(100),
   PRIMARY KEY (feature_id),
-  FOREIGN KEY (product_id) REFERENCES products(product_id)
+  FOREIGN KEY (product_id) REFERENCES products (product_id)
 );
 COPY features(feature_id, product_id, feature, value)
 FROM '/Users/erinoconnor/___HACK_REACTOR/SysDesCap/overview_api/database/csv-data/features.csv'

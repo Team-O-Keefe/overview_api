@@ -7,7 +7,7 @@ CREATE TABLE styles(
   original_price INT,
   default_style BOOLEAN,
   PRIMARY KEY (style_id),
-  FOREIGN KEY (product_id) REFERENCES products(product_id)
+  FOREIGN KEY (product_id) REFERENCES products (product_id)
 );
 COPY styles(style_id, product_id, name, sale_price, original_price, default_style)
 FROM '/Users/erinoconnor/___HACK_REACTOR/SysDesCap/overview_api/database/csv-data/styles.csv'
