@@ -54,29 +54,32 @@ module.exports.getProductInfo = async (pId, cb) => {
 };
 
 module.exports.getSingleProduct = async (pId, cb) => {
-  const query = `SELECT
-                    json_build_object(
-                      'product_id', product_id,
-                      'name', name,
-                      'slogan', slogan,
-                      'description', description,
-                      'category', category,
-                      'default_price', default_price,
-                      'features',
-                      (SELECT json_agg(
-                          json_build_object(
-                            'feature', features.feature,
-                            'value', features.value
-                          )
-                        ) as features
-                        FROM features
-                        WHERE product_id = products.product_id
-                          GROUP BY product_id)
-                    ) AS results FROM products
-                        WHERE products.product_id = ${pId}
-                        GROUP BY product_id`;
+  const query2 = `SELECT
+                  products.product_id,
+                  products.name,
+                  products.slogan,
+                  products.description,
+                  products.category,
+                  products.default_price,
+                    json_agg(
+                      json_build_object(
+                        'feature', features.feature,
+                        'value', features.value
+                      )
+                    )
+                  AS features
+                  FROM products
+                  LEFT JOIN features
+                  ON products.product_id = features.product_id
+                  WHERE products.product_id = ${pId}
+                  GROUP BY products.product_id,
+                    products.name,
+                    products.slogan,
+                    products.description,
+                    products.category,
+                    products.default_price`;
 
-  pool.query(query)
+  pool.query(query2)
     .then((response) => {
       cb(null, response.rows[0]);
     })
