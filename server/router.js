@@ -10,7 +10,7 @@ router.get('/products', (req, res) => {
   if (!count) {
     count = 5;
   }
-  controller.getProducts(page, count, (error, data) => {
+  controller.getAllProducts(page, count, (error, data) => {
     if (error) {
       res.status(400);
     } else {
@@ -29,6 +29,16 @@ router.get('/products/:product_id/styles', (req, res) => {
     }
   });
 });
-router.get('/products/:product_id');
+
+router.get('/products/:product_id', (req, res) => {
+  const id = req.params.product_id;
+  controller.getSingleProduct(id, (error, data) => {
+    if (error) {
+      res.status(400);
+    } else {
+      res.send(data);
+    }
+  });
+});
 
 module.exports = router;

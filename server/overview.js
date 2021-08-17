@@ -3,7 +3,7 @@ const DBCONFIG = require('./.db-config');
 
 const pool = new Pool(DBCONFIG.db);
 
-module.exports.getProducts = async (page, count, cb) => {
+module.exports.getAllProducts = async (page, count, cb) => {
   const query = `SELECT *
                   FROM products
                   WHERE product_id BETWEEN ${page} AND ${count * page}`;
@@ -21,8 +21,8 @@ module.exports.getProductInfo = async (pId, cb) => {
                     product_id, json_agg(json_build_object(
                       'style_id', style_id,
                       'name', name,
-                      'original_price', original_price,
                       'sale_price', sale_price,
+                      'original_price', original_price,
                       'default?', default_style,
                       'photos',
                       (SELECT json_agg(json_build_object(
@@ -45,6 +45,38 @@ module.exports.getProductInfo = async (pId, cb) => {
                           GROUP BY product_id`;
 
   pool.query(query2)
+    .then((response) => {
+      cb(null, response.rows[0]);
+    })
+    .catch((error) => {
+      cb(error, null);
+    });
+};
+
+module.exports.getSingleProduct = async (pId, cb) => {
+  const query = `SELECT
+                    json_build_object(
+                      'product_id', product_id,
+                      'name', name,
+                      'slogan', slogan,
+                      'description', description,
+                      'category', category,
+                      'default_price', default_price,
+                      'features',
+                      (SELECT json_agg(
+                          json_build_object(
+                            'feature', features.feature,
+                            'value', features.value
+                          )
+                        ) as features
+                        FROM features
+                        WHERE product_id = products.product_id
+                          GROUP BY product_id)
+                    ) AS results FROM products
+                        WHERE products.product_id = ${pId}
+                        GROUP BY product_id`;
+
+  pool.query(query)
     .then((response) => {
       cb(null, response.rows[0]);
     })
