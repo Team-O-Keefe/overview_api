@@ -3,3 +3,4 @@ database/csv-data/
 .DS_Store
 .config.js
 .db-config.js
+overview.pem
