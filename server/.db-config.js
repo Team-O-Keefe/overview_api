@@ -1,9 +1,9 @@
 module.exports = {
   db: {
-    user: 'erinoconnor',
-    host: 'localhost',
-    database: 'overview',
-    password: 'password',
+    user: 'postgres',
+    host: '34.221.200.98',
+    database: 'postgres',
+    password: 'f',
     port: 5432
   }
 };
